@@ -6,7 +6,6 @@ Hello! If you are not the next person to do this FYP, uhhh imagine me talking to
 So you will find here these folders:
 
 - FYP-notes -> Essentially my logbook during the FYP, not particularly important but you can import it into Obsidian as a repository and see what I noted down. I mainly recommend using obsidian as a logbook type tool, it really helps with keeping track of each aspect.
-- Literature -> All the literature files I was left with and added on during my research. Plenty in there to read :x
 - GMAT-FILES -> Relevant GMAT files and matlab SPAD generation files for your use.
 - MyWork -> All of my computational work from the thesis is in this folder.
 
