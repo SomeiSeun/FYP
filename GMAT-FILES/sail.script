@@ -1,0 +1,351 @@
+%Created: 2021-09-05 11:58:13
+
+%Author: GBR
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+
+Create Spacecraft Sail;
+
+GMAT Sail.DateFormat = UTCGregorian;
+GMAT Sail.Epoch = '27 Feb 2027 10:00:00.000';
+GMAT Sail.CoordinateSystem = SunInertial;
+GMAT Sail.DisplayStateType = Keplerian;
+GMAT Sail.SMA = 189000000.000001;
+GMAT Sail.ECC = 0.2075999999999935;
+GMAT Sail.INC = 0;
+GMAT Sail.RAAN = 0;
+GMAT Sail.AOP = 360;
+GMAT Sail.TA = 180;
+GMAT Sail.DryMass = 2.27;
+GMAT Sail.Cd = 2.2;
+GMAT Sail.Cr = 1.91;
+GMAT Sail.DragArea = 15;
+GMAT Sail.SRPArea = 454;
+GMAT Sail.SPADDragScaleFactor = 1;
+GMAT Sail.SPADSRPScaleFactor = 1;
+GMAT Sail.NAIFId = -10021001;
+GMAT Sail.NAIFIdReferenceFrame = -9021001;
+GMAT Sail.OrbitColor = Red;
+GMAT Sail.TargetColor = Teal;
+GMAT Sail.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT Sail.CdSigma = 1e+70;
+GMAT Sail.CrSigma = 1e+70;
+GMAT Sail.Id = 'SatId';
+GMAT Sail.Attitude = Spinner;
+GMAT Sail.SPADSRPFile = 'DeadalusSPAD.dat';
+GMAT Sail.SPADSRPInterpolationMethod = Bilinear;
+GMAT Sail.SPADSRPScaleFactorSigma = 1e+70;
+GMAT Sail.SPADDragInterpolationMethod = Bilinear;
+GMAT Sail.SPADDragScaleFactorSigma = 1e+70;
+GMAT Sail.ModelFile = 'aura.3ds';
+GMAT Sail.ModelOffsetX = 0;
+GMAT Sail.ModelOffsetY = 0;
+GMAT Sail.ModelOffsetZ = 0;
+GMAT Sail.ModelRotationX = 0;
+GMAT Sail.ModelRotationY = 0;
+GMAT Sail.ModelRotationZ = 0;
+GMAT Sail.ModelScale = 1;
+GMAT Sail.AttitudeDisplayStateType = 'EulerAngles';
+GMAT Sail.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT Sail.EulerAngleSequence = '321';
+GMAT Sail.EulerAngle1 = 0;
+GMAT Sail.EulerAngle2 = -0;
+GMAT Sail.EulerAngle3 = 0;
+GMAT Sail.AngularVelocityX = 0;
+GMAT Sail.AngularVelocityY = 0;
+GMAT Sail.AngularVelocityZ = 0;
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel NearEarth_ForceModel;
+
+GMAT NearEarth_ForceModel.CentralBody = Earth;
+GMAT NearEarth_ForceModel.PrimaryBodies = {Earth};
+GMAT NearEarth_ForceModel.PointMasses = {Luna, Sun};
+GMAT NearEarth_ForceModel.SRP = Off;
+GMAT NearEarth_ForceModel.RelativisticCorrection = Off;
+GMAT NearEarth_ForceModel.ErrorControl = RSSStep;
+GMAT NearEarth_ForceModel.GravityField.Earth.Degree = 10;
+GMAT NearEarth_ForceModel.GravityField.Earth.Order = 10;
+GMAT NearEarth_ForceModel.GravityField.Earth.StmLimit = 100;
+GMAT NearEarth_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT NearEarth_ForceModel.GravityField.Earth.TideModel = 'None';
+GMAT NearEarth_ForceModel.Drag.AtmosphereModel = JacchiaRoberts;
+GMAT NearEarth_ForceModel.Drag.HistoricWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT NearEarth_ForceModel.Drag.PredictedWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT NearEarth_ForceModel.Drag.CSSISpaceWeatherFile = 'SpaceWeather-All-v1.2.txt';
+GMAT NearEarth_ForceModel.Drag.SchattenFile = 'SchattenPredict.txt';
+GMAT NearEarth_ForceModel.Drag.F107 = 150;
+GMAT NearEarth_ForceModel.Drag.F107A = 150;
+GMAT NearEarth_ForceModel.Drag.MagneticIndex = 3;
+GMAT NearEarth_ForceModel.Drag.SchattenErrorModel = 'Nominal';
+GMAT NearEarth_ForceModel.Drag.SchattenTimingModel = 'NominalCycle';
+GMAT NearEarth_ForceModel.Drag.DragModel = 'Spherical';
+
+Create ForceModel DeepSpace_ForceModel;
+
+GMAT DeepSpace_ForceModel.CentralBody = Sun;
+GMAT DeepSpace_ForceModel.PointMasses = {Earth, Luna, Jupiter, Mars, Mercury, Neptune, Pluto, Saturn, Sun, Uranus, Venus};
+GMAT DeepSpace_ForceModel.Drag = None;
+GMAT DeepSpace_ForceModel.SRP = Off;
+GMAT DeepSpace_ForceModel.RelativisticCorrection = Off;
+GMAT DeepSpace_ForceModel.ErrorControl = RSSStep;
+
+Create ForceModel DeepSpaceSail_ForceModel;
+
+GMAT DeepSpaceSail_ForceModel.CentralBody = Sun;
+GMAT DeepSpaceSail_ForceModel.PointMasses = {Earth, Luna, Jupiter, Mars, Mercury, Neptune, Pluto, Saturn, Sun, Uranus, Venus};
+GMAT DeepSpaceSail_ForceModel.Drag = None;
+GMAT DeepSpaceSail_ForceModel.SRP = On;
+GMAT DeepSpaceSail_ForceModel.RelativisticCorrection = Off;
+GMAT DeepSpaceSail_ForceModel.ErrorControl = RSSStep;
+GMAT DeepSpaceSail_ForceModel.SRP.Flux = 1367;
+GMAT DeepSpaceSail_ForceModel.SRP.SRPModel = SPADFile;
+GMAT DeepSpaceSail_ForceModel.SRP.Nominal_Sun = 149597870.691;
+
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator NearEarth;
+
+GMAT NearEarth.FM = NearEarth_ForceModel;
+GMAT NearEarth.Type = RungeKutta89;
+GMAT NearEarth.InitialStepSize = 60;
+GMAT NearEarth.Accuracy = 9.999999999999999e-12;
+GMAT NearEarth.MinStep = 0.001;
+GMAT NearEarth.MaxStep = 2700;
+GMAT NearEarth.MaxStepAttempts = 50;
+GMAT NearEarth.StopIfAccuracyIsViolated = true;
+
+Create Propagator DeepSpace;
+
+GMAT DeepSpace.FM = DeepSpace_ForceModel;
+GMAT DeepSpace.Type = PrinceDormand78;
+GMAT DeepSpace.InitialStepSize = 600;
+GMAT DeepSpace.Accuracy = 9.999999999999999e-12;
+GMAT DeepSpace.MinStep = 0;
+GMAT DeepSpace.MaxStep = 864000;
+GMAT DeepSpace.MaxStepAttempts = 50;
+GMAT DeepSpace.StopIfAccuracyIsViolated = true;
+
+Create Propagator DeepSpaceSail;
+
+GMAT DeepSpaceSail.FM = DeepSpaceSail_ForceModel;
+GMAT DeepSpaceSail.Type = PrinceDormand78;
+GMAT DeepSpaceSail.InitialStepSize = 600;
+GMAT DeepSpaceSail.Accuracy = 1e-06;
+GMAT DeepSpaceSail.MinStep = 0;
+GMAT DeepSpaceSail.MaxStep = 864000;
+GMAT DeepSpaceSail.MaxStepAttempts = 50;
+GMAT DeepSpaceSail.StopIfAccuracyIsViolated = true;
+
+
+%----------------------------------------
+%---------- Coordinate Systems
+%----------------------------------------
+
+Create CoordinateSystem SunInertial;
+
+GMAT SunInertial.Origin = Sun;
+GMAT SunInertial.Axes = BodyInertial;
+
+Create CoordinateSystem Object;
+
+GMAT Object.Origin = Earth;
+GMAT Object.Axes = ObjectReferenced;
+GMAT Object.XAxis = V;
+GMAT Object.YAxis = N;
+GMAT Object.Primary = Sun;
+GMAT Object.Secondary = Sail;
+
+Create CoordinateSystem SailFixed;
+
+GMAT SailFixed.Origin = Sail;
+GMAT SailFixed.Axes = BodyFixed;
+
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create OrbitView SunView;
+
+GMAT SunView.SolverIterations = Current;
+GMAT SunView.UpperLeft = [ 0 0 ];
+GMAT SunView.Size = [ 0.4972972972972973 0.4976190476190476 ];
+GMAT SunView.RelativeZOrder = 125;
+GMAT SunView.Maximized = false;
+GMAT SunView.Add = {Sail, Earth, Sun, Mars, Jupiter};
+GMAT SunView.CoordinateSystem = SunInertial;
+GMAT SunView.DrawObject = [ true true true true true ];
+GMAT SunView.DataCollectFrequency = 1;
+GMAT SunView.UpdatePlotFrequency = 50;
+GMAT SunView.NumPointsToRedraw = 0;
+GMAT SunView.ShowPlot = true;
+GMAT SunView.MaxPlotPoints = 20000;
+GMAT SunView.ShowLabels = true;
+GMAT SunView.ViewPointReference = Sun;
+GMAT SunView.ViewPointVector = [ 800000000 -300000000 600000000 ];
+GMAT SunView.ViewDirection = Sun;
+GMAT SunView.ViewScaleFactor = 1;
+GMAT SunView.ViewUpCoordinateSystem = SunInertial;
+GMAT SunView.ViewUpAxis = Z;
+GMAT SunView.EclipticPlane = Off;
+GMAT SunView.XYPlane = On;
+GMAT SunView.WireFrame = Off;
+GMAT SunView.Axes = On;
+GMAT SunView.Grid = Off;
+GMAT SunView.SunLine = Off;
+GMAT SunView.UseInitialView = On;
+GMAT SunView.StarCount = 7000;
+GMAT SunView.EnableStars = On;
+GMAT SunView.EnableConstellations = On;
+
+Create XYPlot SunRMAG;
+
+GMAT SunRMAG.SolverIterations = Current;
+GMAT SunRMAG.UpperLeft = [ 0.4972972972972973 0.4976190476190476 ];
+GMAT SunRMAG.Size = [ 0.4972972972972973 0.4976190476190476 ];
+GMAT SunRMAG.RelativeZOrder = 105;
+GMAT SunRMAG.Maximized = false;
+GMAT SunRMAG.XVariable = Sail.ElapsedDays;
+GMAT SunRMAG.YVariables = {Sail.Sun.RMAG};
+GMAT SunRMAG.ShowGrid = true;
+GMAT SunRMAG.ShowPlot = true;
+
+Create XYPlot SunTA;
+
+GMAT SunTA.SolverIterations = Current;
+GMAT SunTA.UpperLeft = [ 0 0.4976190476190476 ];
+GMAT SunTA.Size = [ 0.4972972972972973 0.4976190476190476 ];
+GMAT SunTA.RelativeZOrder = 115;
+GMAT SunTA.Maximized = false;
+GMAT SunTA.XVariable = Sail.ElapsedDays;
+GMAT SunTA.YVariables = {Sail.Sun.TA};
+GMAT SunTA.ShowGrid = true;
+GMAT SunTA.ShowPlot = true;
+
+Create XYPlot V;
+
+GMAT V.SolverIterations = Current;
+GMAT V.UpperLeft = [ 0.4972972972972973 0 ];
+GMAT V.Size = [ 0.4972972972972973 0.4976190476190476 ];
+GMAT V.RelativeZOrder = 110;
+GMAT V.Maximized = false;
+GMAT V.XVariable = Sail.ElapsedDays;
+GMAT V.YVariables = {Sail.Object.VMAG, Sail.SunInertial.VMAG};
+GMAT V.ShowGrid = true;
+GMAT V.ShowPlot = true;
+
+Create ReportFile Sim1a;
+GMAT Sim1a.SolverIterations = All;
+GMAT Sim1a.UpperLeft = [ 0 0 ];
+GMAT Sim1a.Size = [ 0 0 ];
+GMAT Sim1a.RelativeZOrder = 0;
+GMAT Sim1a.Maximized = false;
+GMAT Sim1a.Filename = 'Sim1a.txt';
+GMAT Sim1a.Precision = 16;
+GMAT Sim1a.Add = {Sail.ElapsedDays, Sail.Sun.RMAG, Sail.Sun.SMA};
+GMAT Sim1a.WriteHeaders = true;
+GMAT Sim1a.LeftJustify = On;
+GMAT Sim1a.ZeroFill = Off;
+GMAT Sim1a.FixedWidth = true;
+GMAT Sim1a.Delimiter = ' ';
+GMAT Sim1a.ColumnWidth = 23;
+GMAT Sim1a.WriteReport = true;
+
+Create ReportFile Sim1b;
+GMAT Sim1b.SolverIterations = All;
+GMAT Sim1b.UpperLeft = [ 0 0 ];
+GMAT Sim1b.Size = [ 0 0 ];
+GMAT Sim1b.RelativeZOrder = 0;
+GMAT Sim1b.Maximized = false;
+GMAT Sim1b.Filename = 'Sim1b.txt';
+GMAT Sim1b.Precision = 16;
+GMAT Sim1b.Add = {Sail.SunInertial.VMAG, Sail.DeepSpaceSail_ForceModel.AccelerationX, Sail.DeepSpaceSail_ForceModel.AccelerationY, Sail.DeepSpaceSail_ForceModel.AccelerationZ};
+GMAT Sim1b.WriteHeaders = true;
+GMAT Sim1b.LeftJustify = On;
+GMAT Sim1b.ZeroFill = Off;
+GMAT Sim1b.FixedWidth = true;
+GMAT Sim1b.Delimiter = ' ';
+GMAT Sim1b.ColumnWidth = 23;
+GMAT Sim1b.WriteReport = true;
+
+Create ReportFile Sim1c;
+GMAT Sim1c.SolverIterations = All;
+GMAT Sim1c.UpperLeft = [ 0 0 ];
+GMAT Sim1c.Size = [ 0 0 ];
+GMAT Sim1c.RelativeZOrder = 0;
+GMAT Sim1c.Maximized = false;
+GMAT Sim1c.Filename = 'Sim1c.txt';
+GMAT Sim1c.Precision = 16;
+GMAT Sim1c.Add = {Sail.EulerAngle1, Sail.EulerAngle2, Sail.EulerAngle3};
+GMAT Sim1c.WriteHeaders = true;
+GMAT Sim1c.LeftJustify = On;
+GMAT Sim1c.ZeroFill = Off;
+GMAT Sim1c.FixedWidth = true;
+GMAT Sim1c.Delimiter = ' ';
+GMAT Sim1c.ColumnWidth = 23;
+GMAT Sim1c.WriteReport = true;
+
+Create ReportFile Sim1d;
+GMAT Sim1d.SolverIterations = All;
+GMAT Sim1d.UpperLeft = [ 0 0 ];
+GMAT Sim1d.Size = [ 0 0 ];
+GMAT Sim1d.RelativeZOrder = 0;
+GMAT Sim1d.Maximized = false;
+GMAT Sim1d.Filename = 'Sim1d.txt';
+GMAT Sim1d.Precision = 16;
+GMAT Sim1d.Add = {Sail.EulerAngleRate1, Sail.EulerAngleRate2, Sail.EulerAngleRate3};
+GMAT Sim1d.WriteHeaders = true;
+GMAT Sim1d.LeftJustify = On;
+GMAT Sim1d.ZeroFill = Off;
+GMAT Sim1d.FixedWidth = true;
+GMAT Sim1d.Delimiter = ' ';
+GMAT Sim1d.ColumnWidth = 23;
+GMAT Sim1d.WriteReport = true;
+
+Create ReportFile Sim1e;
+GMAT Sim1e.SolverIterations = All;
+GMAT Sim1e.UpperLeft = [ 0 0 ];
+GMAT Sim1e.Size = [ 0 0 ];
+GMAT Sim1e.RelativeZOrder = 0;
+GMAT Sim1e.Maximized = false;
+GMAT Sim1e.Filename = 'Sim1e.txt';
+GMAT Sim1e.Precision = 16;
+GMAT Sim1e.Add = {Sail.SunInertial.X, Sail.SunInertial.Y, Sail.SunInertial.Z};
+GMAT Sim1e.WriteHeaders = true;
+GMAT Sim1e.LeftJustify = On;
+GMAT Sim1e.ZeroFill = Off;
+GMAT Sim1e.FixedWidth = true;
+GMAT Sim1e.Delimiter = ' ';
+GMAT Sim1e.ColumnWidth = 23;
+GMAT Sim1e.WriteReport = true;
+
+
+%----------------------------------------
+%---------- Arrays, Variables, Strings
+%----------------------------------------
+Create Variable FlightTimeYears FlightTimeDays;
+GMAT FlightTimeYears = 5;
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+
+GMAT [FlightTimeDays] = FlightTimeYears*365.25;
+
+Propagate 'Prop to Periapsis_no sail' DeepSpace(Sail) {Sail.Sun.Periapsis};
+Propagate 'Prop' DeepSpaceSail(Sail) {Sail.ElapsedDays = FlightTimeDays};
