@@ -1,0 +1,13 @@
+So this project is insane innit, good luck future suffering Y4 student, i believe in u <3
+
+Anyways for future considerations you should implement active attitude control systems (LCD panels like on IKAROS or thrusters?)
+Also to do this you are gonna need a bigger CubeSat specification!
+I suggest you to consider using a 12U CubeSat for its base being 40x40 (good for implmenting and fitting a circular spool).
+The current system sizing leads to about 3.99 kg of mass, and adding active attitude control to ADCS shouldn't drastically increase the mass or change power requirements much.
+Using a crude approximation of increased mass by 2 kg, you can see from my mass sensitivity study this is still well within the project objective of 100 years to escape. 
+Though might be of concern with the power system lifetime. BUT CONSIDER THIS!
+The last saved data in my HubSizing code is assuming a 12U cubesat with approximate dimensions and it shows for the original sail size of 454 m^2, it fits with > 20 cm of free space. You could potentially implement an even larger sail within a 12U cubesat for very little mass increase! You will need to do a new design envelope sizing again. Also need to consider the deployment dynamics at a future stage.
+
+
+
+P.S. Change the SPAD file based on sail size ;) (SPAD generator is in Filippos' code)
