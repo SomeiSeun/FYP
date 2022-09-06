@@ -1,11 +1,11 @@
 # FYP
-Code and logs from my thesis can be found in this repo.
+Code from my thesis can be found in this repo.
 
 Hello! If you are not the next person to do this FYP, uhhh imagine me talking to you makes sense, or just see ths stuff. Anyways, This will be a really interesting and fun FYP and I hope I've left you with an interesting starting point for your FYP.
 
 So you will find here these folders:
 
-- FYP-notes -> Essentially my logbook during the FYP, not particularly important but you can import it into Obsidian as a repository and see what I noted down. I mainly recommend using obsidian as a logbook type tool, it really helps with keeping track of each aspect.
+- FYP-notes -> Originally was included in the repo but was removed for personal information in there.
 - GMAT-FILES -> Relevant GMAT files and matlab SPAD generation files for your use.
 - MyWork -> All of my computational work from the thesis is in this folder.
 
